@@ -1,4 +1,6 @@
 # Gulp Starter
+Restructuring files and modefied Version of `http://github.com/dope/gulp-starter.git`.
+
 A starter kit for your front-end builds.
 
 - Compiles, autoprefixes and minimizes your Scss (can easily switch to Sass or LESS)
@@ -7,7 +9,7 @@ A starter kit for your front-end builds.
 - Generates a BrowserSync URL for you to access.
 
 ### Getting Started
-Clone: `http://github.com/dope/gulp-starter.git`
+Clone: `git@github.com:axmxh/gulp-starter.git`
 
 Once you have cloned the repo, navigate in to the directory via terminal and run.
 
