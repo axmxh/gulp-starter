@@ -22,15 +22,40 @@
     "url": "https://github.com/dope/gulp-starter/issues"
   },
   "homepage": "https://github.com/dope/gulp-starter",
+  "dependencies": {
+    "animate.css": "^3.5.2",
+    "bootstrap-datepicker": "^1.7.1",
+    "cleave.js": "^1.0.7",
+    "fullcalendar": "^3.7.0",
+    "gulp": "^3.9.1",
+    "jquery-timepicker": "^1.3.3",
+    "responsive-tabs": "^1.6.3",
+    "select2": "^4.0.5"
+  },
   "devDependencies": {
-    "browser-sync": "^2.0.0",
     "gulp": "^3.8.8",
     "gulp-autoprefixer": "^1.0.1",
     "gulp-imagemin": "^2.2.1",
     "gulp-plumber": "^0.6.6",
-    "gulp-rename": "^1.2.0",
-    "gulp-sass": "^2.0.4",
-    "gulp-uglify": "^1.1.0",
-    "imagemin-pngquant": "^4.0.0"
+    "imagemin-pngquant": "^4.0.0",
+    "autoprefixer": "^7.1.6",
+    "bootstrap": "^4.0.0-beta.2",
+    "browser-sync": "^2.17.3",
+    "font-awesome": "^4.7.0",
+    "gulp-cache": "^0.4.6",
+    "gulp-concat": "*",
+    "gulp-minify": "0.0.15",
+    "gulp-postcss": "^6.2.0",
+    "gulp-print": "^2.0.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-sourcemaps": "*",
+    "gulp-uglify": "^2.0.1",
+    "jquery": "^3.2.1",
+    "node-sass": "^4.6.1",
+    "popper.js": "^1.12.9",
+    "rateyo": "^2.3.3",
+    "sass-loader": "^6.0.2",
+    "slick-carousel": "^1.8.1"
   }
 }

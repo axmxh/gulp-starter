@@ -1,5 +1,6 @@
 /*=============================================
 =            Gulp Starter by @dope            =
+=            Edited by @axmxh                 =
 =============================================*/
 
 /**
@@ -14,6 +15,7 @@ var browserSync  = require('browser-sync');
 var prefix       = require('gulp-autoprefixer');
 var plumber      = require('gulp-plumber');
 var uglify       = require('gulp-uglify');
+var concat       = require('gulp-concat');
 var rename       = require("gulp-rename");
 var imagemin     = require("gulp-imagemin");
 var pngquant     = require('imagemin-pngquant');
@@ -27,13 +29,26 @@ var pngquant     = require('imagemin-pngquant');
 * - Autoprefixer
 *
 **/
-gulp.task('sass', function() {
-  gulp.src('sass/**/*.scss')
+gulp.task('sass', function(cb) {
+  gulp.src('src/sass/*.scss')
   .pipe(sass({outputStyle: 'compressed'}))
   .pipe(prefix('last 2 versions', '> 1%', 'ie 8', 'Android 2', 'Firefox ESR'))
   .pipe(plumber())
-  .pipe(gulp.dest('css'));
+  .pipe(gulp.dest('.tmp/css'))
+  .on('end', cb);
+
 });
+
+//concatnaite css files
+gulp.task('css', ['sass'], function(){
+    gulp.src([
+        '.tmp/css/*.css',
+    ])
+    .pipe(concat('main.min.css'))
+    .pipe(gulp.dest('dist/css'));
+});
+
+
 
 /**
 *
@@ -43,7 +58,7 @@ gulp.task('sass', function() {
 *
 **/
 gulp.task('browser-sync', function() {
-  browserSync.init(['css/*.css', 'js/**/*.js', 'index.html'], {
+  browserSync.init(['src/css/*.css', 'src/js/**/*.js', 'index.html'], {
     server: {
       baseDir: './'
     }
@@ -57,14 +72,26 @@ gulp.task('browser-sync', function() {
 * - Uglify
 *
 **/
-gulp.task('scripts', function() {
-  gulp.src('js/*.js')
-  .pipe(uglify())
+gulp.task('scripts', function(cb) {
+  gulp.src('src/js/*.js')
   .pipe(rename({
-    dirname: "min",
+    //dirname: "min",
     suffix: ".min",
   }))
-  .pipe(gulp.dest('js'))
+  .pipe(gulp.dest('.tmp/js'))
+  .on('end', cb);
+});
+
+
+//concatnaite js files
+gulp.task('js', ['scripts'], function(){
+    gulp.src([
+        'node_modules/jquery/dist/jquery.js',
+        '.tmp/js/*.js'      
+    ])
+    .pipe(uglify())
+    .pipe(concat('main.min.js'))
+    .pipe(gulp.dest('dist/js'));
 });
 
 /**
@@ -74,13 +101,13 @@ gulp.task('scripts', function() {
 *
 **/
 gulp.task('images', function () {
-  return gulp.src('images/*')
+  return gulp.src('src/images/*')
   .pipe(imagemin({
     progressive: true,
     svgoPlugins: [{removeViewBox: false}],
     use: [pngquant()]
   }))
-  .pipe(gulp.dest('images'));
+  .pipe(gulp.dest('dist/images'));
 });
 
 
@@ -91,8 +118,8 @@ gulp.task('images', function () {
 * - Watchs for file changes for images, scripts and sass/css
 *
 **/
-gulp.task('default', ['sass', 'browser-sync', 'scripts', 'images'], function () {
-  gulp.watch('sass/**/*.scss', ['sass']);
-  gulp.watch('js/**/*.js', ['scripts']);
-  gulp.watch('images/*', ['images']);
+gulp.task('default', ['css', 'js', 'images', 'browser-sync'], function () {
+  gulp.watch('src/sass/*.scss', ['css']);
+  gulp.watch('src/js/*.js', ['js']);
+  gulp.watch('src/images/*', ['images']);
 });
