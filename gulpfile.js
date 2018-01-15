@@ -45,6 +45,10 @@ gulp.task('css', ['sass'], function(){
         '.tmp/css/*.css',
     ])
     .pipe(concat('main.min.css'))
+    .pipe(uglifycss({
+        "maxLineLen": 80,
+        "uglyComments": true
+    }))
     .pipe(gulp.dest('dist/css'));
 });
 

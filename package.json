@@ -51,6 +51,7 @@
     "gulp-sass": "^3.1.0",
     "gulp-sourcemaps": "*",
     "gulp-uglify": "^2.0.1",
+    "gulp-uglifycss": "^1.0.9",
     "jquery": "^3.2.1",
     "node-sass": "^4.6.1",
     "popper.js": "^1.12.9",
